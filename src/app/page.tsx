@@ -28,12 +28,22 @@ const Home: React.FC = () => {
   const [errors, setErrors] = useState<Partial<FormData>>({});
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value, type, files } = e.target;
-    setFormData((prevState) => ({
-      ...prevState,
-      [name]: type === 'file' ? files?.[0] ?? null : value,
-    }));
+    const { name, value, type } = e.target;
+  
+    if (e.target instanceof HTMLInputElement && type === 'file') {
+      const files = e.target.files;
+      setFormData((prevState) => ({
+        ...prevState,
+        [name]: files?.[0] ?? null,
+      }));
+    } else {
+      setFormData((prevState) => ({
+        ...prevState,
+        [name]: value,
+      }));
+    }
   };
+  
 
   const validateForm = (): boolean => {
     const newErrors: Partial<FormData> = {};
