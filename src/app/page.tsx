@@ -1,6 +1,16 @@
 "use client";
 
 import { useState, ChangeEvent, FormEvent } from 'react';
+import Logo from "../../public/image.png"
+import Image from 'next/image';
+import Facebook from "../../public/facebook.png"
+import Linkedin from "../../public/linkedin.png"
+import Discord from "../../public/discord.png"
+import X from "../../public/x.png"
+
+
+
+
 
 interface FormData {
   name: string;
@@ -12,6 +22,7 @@ interface FormData {
   domain: string;
   resume: File | null;
 }
+
 
 const Home: React.FC = () => {
   const [formData, setFormData] = useState<FormData>({
@@ -92,21 +103,23 @@ const Home: React.FC = () => {
   };
 
   return (
-    <div className="relative min-h-screen bg-cover bg-center" style={{ backgroundImage: 'url("/blacky.jpg")' }}>
+    <div className="relative min-h-screen bg-cover bg-center" >
       {/* Navbar */}
-      <nav className="fixed top-0 left-0 right-0 bg-white bg-opacity-20 backdrop-blur-md border-b border-gray-300 shadow-lg z-50">
-        <div className="container mx-auto px-4 py-3 flex justify-between items-center">
-          <div className="text-2xl font-bold text-sky-500">Recruitment Portal</div>
+      <nav className="fixed top-0 left-0 right-0 bg-neutral-800  backdrop-blur-md  shadow-lg z-50">
+        <div className="container mx-auto px-4 py-2 flex justify-between items-center">
+          <div className="flex flex-row items-center gap-12">
+          <Image alt='logo' src={Logo} className='w-16'></Image>
+          <div className="text-2xl tracking-wide text-sky-500">SRM  ACM SIGKDD Student Chapter</div>
+          </div>
+
           <div>
-            <a href="#" className="text-white hover:text-sky-500 mx-2">Home</a>
-            <a href="#" className="text-white hover:text-sky-500 mx-2">About</a>
-            <a href="#" className="text-white hover:text-sky-500 mx-2">Contact</a>
+            <a href="#" className="text-white font-bold rounded-2xl bg-black p-4 hover:text-sky-500">Contact Us</a>
           </div>
         </div>
       </nav>
 
       {/* Content */}
-      <div className="flex items-center justify-between min-h-screen">
+      <div className="flex items-center justify-between min-h-screen bg-slate-800">
         {/* Left Side Text */}
         <div className="w-1/2 p-6 flex justify-center items-center ">
           <h1 className="text-4xl font-bold text-sky-500 animate-blink">
@@ -259,6 +272,21 @@ const Home: React.FC = () => {
           </form>
         </div>
       </div>
+       {/* Footer */}
+      <footer className="fixed bottom-0 left-0 right-0 bg-neutral-800   shadow-lg z-50">
+        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+          <div className="text-white gap-4 flex ">
+            <span className='font-bold text-xl'>ACM SIGKDD</span>
+            <span>© 2024 ACM. All rights reserved</span>
+          </div>
+          <div className="flex flex-row gap-4 ">
+            <Image alt='facebook' src={Facebook} className='w-11'></Image>
+            <Image alt='facebook' src={Linkedin} className=' w-11 '></Image>
+            <Image alt='facebook' src={Discord} className=' w-11 '></Image>
+            <Image alt='facebook' src={X} className=' w-11 '></Image>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };
